@@ -8,6 +8,7 @@ class Match:
     team_a_score = ""
     team_b_name = ""
     team_b_score = ""
+    match_spot = ""
     x = 0
 
     def __init__(self, tr):
@@ -26,16 +27,20 @@ class Match:
             pass
         else:
             score = scores.text
-            print(score)
             # s = score.replace(" ","")
             self.match_score(score)
         match_date_div = soup.find('div', {'class': 'season__game-data'})
         self.set_match_date_and_time(match_date_div)
 
+        match_spot = soup.find('span', {'class': 'spot'})
+        self.set_match_spot(match_spot)
+
+    def set_match_spot(self, match_spot):
+        self.match_spot = match_spot.text
+
     def set_match_date_and_time(self, match_date_div):
         str_div = str(match_date_div)
         code = "<html><head></head><body>" + str_div + "</body></html>"
-        print(code)
         soup = bs.BeautifulSoup(code, 'lxml')
         spans = soup.find_all('span')
         day_span = spans[0].contents
@@ -64,7 +69,6 @@ class Match:
     #     self.match_date(year=year, month=mon, day=d)
 
     def match_score(self, score):
-        print('poszlo match_score')
         if ":" in score:
             #delete all spaces
             score = score.replace('\n', '').replace('\r', '')

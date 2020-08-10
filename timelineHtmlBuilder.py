@@ -32,13 +32,16 @@ class TimelineHTMLbuilder:
         team_b_score = one_match.team_b_score
         match_date = one_match.match_date.strftime('%Y-%m-%d')
         match_time = one_match.match_time
+        match_spot = one_match.match_spot
         self.body_html += '<tr class="break"><td colspan="4"><p>1</p></td></tr>\
         <tr class="event_time"><td colspan="2" class="left_cell">'+match_date+'</td>\
         <td colspan="2" class="right_cell">'+match_time+'</td></tr>\
         <tr class="result"><td class="team_name left_cell">' + team_a_name +'</td>\
 <td class="score">' + team_a_score + '</td>\
 <td class="score">' + team_b_score + '</td>\
-<td class="team_name right_cell">' + team_b_name + '</td></tr>'
+<td class="team_name right_cell">' + team_b_name + '</td></tr>\
+<tr class="match_spot"><td colspan="4" class="spot">' + match_spot + '</td></tr>'
+
 
     def get_body_html(self):
         return self.body_html

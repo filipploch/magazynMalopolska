@@ -31,10 +31,3 @@ class CalendarWindow(QWidget):
         self.signal.emit(self.date, number)
         self.close()
 
-
-
-    @pyqtSlot(str, int)
-    def print_it(self, text, number):
-        assert isinstance(text, str)
-        assert isinstance(number, int)
-        print("print_it")

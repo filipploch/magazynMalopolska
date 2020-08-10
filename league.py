@@ -59,6 +59,10 @@ class League:
         table_builder.save_as_html("tabela", html_code)
 
         # #MAKING HTML TIMELINE
+        self.result_timeline_builder(articles, "wyniki", self.start_date, self.middle_date)
+        self.result_timeline_builder(articles, "terminarz", self.middle_date, self.end_date)
+
+    def result_timeline_builder(self, articles, file_name, first_date, second_date):
         timeline_builder = timelineHtmlBuilder.TimelineHTMLbuilder(self.file_name)
         timeline_builder.set_init_html()
         # timeline_builder.set_body_html(section)
@@ -71,10 +75,8 @@ class League:
         #     x = one_match.match_date
         #     y = self.middle_date
         #     z = x < y
-            print("one match date", one_match.match_date)
-            print("one start date", self.start_date)
-            print("one middle date", self.middle_date)
-            if one_match.match_date >= self.start_date and one_match.match_date <= self.middle_date:
+
+            if one_match.match_date >= first_date and one_match.match_date <= second_date:
                 timeline_builder.set_body_html(one_match)
         #         # print(timeline_builder.get_body_html())
         #         # self.matches.append(one_match)
@@ -84,8 +86,7 @@ class League:
         b = str(timeline_builder.get_body_html())
         c = str(timeline_builder.get_end_html())
         html_code = a + b + c
-        print("TU", b)
-        timeline_builder.save_as_html("terminarz", html_code)
+        timeline_builder.save_as_html(file_name, html_code)
         # games = len(league_matches) * 2
         # self.teams_number = int(games**(.5))
 

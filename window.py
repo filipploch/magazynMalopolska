@@ -3,11 +3,12 @@ from functools import partial
 from PyQt5 import QtCore
 from  calendarWindow import CalendarWindow
 import leaguesCollector
+from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QLabel
-from PyQt5.QtCore import QObject
+import datetime
 
-class Window(QWidget):
-
+class Window(QMainWindow):
+    signal = pyqtSignal(str, int)
     def __init__(self, *args, **kwargs):
         super(Window, self).__init__()
         self.title = "Okno"
@@ -17,14 +18,6 @@ class Window(QWidget):
         self.height = 250
         self.leagues_collection = leaguesCollector.LeaguesCollector()
         self.window_builder()
-
-    @staticmethod
-    def update(name):
-        print(str(name))
-
-    def signal_connect(self):
-        self.obj = CalendarWindow()
-        self.obj.signal.connect(self.update)
 
     def window_builder(self):
         self.setWindowTitle(self.title)
@@ -56,9 +49,12 @@ class Window(QWidget):
         self.button_end_start_date.move(left, 155)
         self.button_end_start_date.clicked.connect(partial(self.open_calendar, 2))
 
+
     def open_calendar(self, number):
-        calendar_start_date = CalendarWindow()
-        calendar_start_date.create_calendar(number)
+        self.calendar = CalendarWindow()
+        self.calendar.signal.connect(self.set_label_text)
+        self.button_run.disconnect()
+        self.calendar.create_calendar(number)
 
     def add_date_labels(self):
         left = 70
@@ -78,7 +74,14 @@ class Window(QWidget):
 
         if number == 0:
             self.label_start_date.setText(text)
+            x = datetime.datetime.strptime(text, '%Y-%m-%d')
+            self.leagues_collection.d0 = x
         if number == 1:
             self.label_middle_date.setText(text)
+            x = datetime.datetime.strptime(text, '%Y-%m-%d')
+            self.leagues_collection.d1 = x
         if number == 2:
             self.label_end_date.setText(text)
+            x = datetime.datetime.strptime(text, '%Y-%m-%d')
+            self.leagues_collection.d2 = x
+        self.button_run.clicked.connect(self.leagues_collection.run_scraper)
