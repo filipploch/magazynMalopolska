@@ -17,7 +17,7 @@ class TableHTMLbuilder:
         css_global = '<link rel="stylesheet" href="css\\main.css">'
         css_specific = '<link rel="stylesheet" href="css\\' + 'tabela.css">'
         self.init_html = '<html><head>' + css_global + css_specific + '<meta charset="UTF-8"></head>\
-        <body><div id="container"><div id="top"><p></p></div><div id="left_margin"></div><div id="table">\
+        <body><div id="container"><div id="top"><p></p></div><div id="left_margin"></div><div id="table"><div id="inside_table_div">\
         <table id="timeline" align="center"><tbody><tr class="header"><td colspan="2"><p></p></td><td id="matches">M</td>\
         <td id="wins">Z</td><td id="ties">R</td><td id="loses">P</td><td id="goals_scored">B+</td><td id="goals_lost">B-</td>\
         <td id="goals_difference">+/-</td><td id="points">P</td></tr>'
@@ -54,7 +54,7 @@ class TableHTMLbuilder:
 
 
     def set_end_html(self):
-        self.end_html = '</tbody></table></div><div id="right_margin"></div></div></body></html>'
+        self.end_html = '</tbody></table></div></div><div id="right_margin"></div></div></body></html>'
 
     def get_end_html(self):
         return self.end_html

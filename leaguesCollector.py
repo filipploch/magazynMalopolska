@@ -13,7 +13,7 @@ class LeaguesCollector:
         # iv_wchod = league.League("https://www.laczynaspilka.pl/rozgrywki/nizsze-ligi,37521.html?round=0", "IV Liga wschodnia", "liga4wschod", 1, 0, 6, self.dates)
         # iv_zachod = league.League("https://www.laczynaspilka.pl/rozgrywki/nizsze-ligi,37460.html?round=0", "IV Liga zachodnia","liga4zachod", 1, 0, 4, self.dates)
         # o_krakow1 = league.League("https://www.laczynaspilka.pl/rozgrywki/nizsze-ligi,36880.html?round=0", "Kraków, Klasa Okręgowa Grupa 1", "okregowaKrakow1", 1, 1, 3, self.dates)
-        # o_krakow2 = league.League("https://www.laczynaspilka.pl/rozgrywki/nizsze-ligi,36978.html?round=0", "Kraków, Klasa Okręgowa Grupa 2", "okregowaKrakow2", 1, 1, 3, self.dates)
+        o_krakow2 = league.League("https://www.laczynaspilka.pl/rozgrywki/nizsze-ligi,36978.html?round=0", "Kraków, Klasa Okręgowa Grupa 2", "okregowaKrakow2", 1, 1, 3, self.dates)
         o_krakow3 = league.League("https://www.laczynaspilka.pl/rozgrywki/nizsze-ligi,36735.html?round=0?round=0", "Kraków, Klasa Okręgowa Grupa 3", "okregowaKrakow3", 1, 1, 2, self.dates)
         # o_chrzanow = league.League("https://www.laczynaspilka.pl/rozgrywki/nizsze-ligi,37005.html?round=0", "Chrzanów, Klasa Okręgowa", "okregowaChrzanow", 1, 1, 2, self.dates)
         # o_tarnow = league.League("https://www.laczynaspilka.pl/rozgrywki/nizsze-ligi,37319.html?round=0", "Tarnów, Klasa Okręgowa", "okregowaTarnow", 1, 1, 2, self.dates)

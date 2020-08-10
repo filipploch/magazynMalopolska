@@ -45,12 +45,14 @@ class League:
             if i < promotion + 1:
                 tr_classes += " promotion"
             # Check if position is "playoff"
-            if playoff > 0:
-                if i >= promotion + 1 and i < 3 + promotion + playoff:
+            elif i >= promotion + 1 and i < 3 + promotion + playoff:
+                if playoff > 0:
                     tr_classes += " playoff"
             # Check if position is "degradation"
-            if i > len(league_table) - degradation - 1:
+            elif i > len(league_table) - degradation - 1:
                 tr_classes += " degradation"
+            else:
+                tr_classes += " safe_position"
 
             table_builder.set_body_html(one_team, tr_classes)
             tr_classes = ""
