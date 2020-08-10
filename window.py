@@ -1,7 +1,10 @@
+from functools import partial
+
 from PyQt5 import QtCore
 from  calendarWindow import CalendarWindow
 import leaguesCollector
-from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QLabel, QCalendarWidget
+from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QLabel
+from PyQt5.QtCore import QObject
 
 class Window(QWidget):
 
@@ -27,15 +30,35 @@ class Window(QWidget):
         self.setWindowTitle(self.title)
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.add_date_labels()
-        self.add_button()
-        self.calendar_start_date = CalendarWindow()
-        self.calendar_start_date.create_calendar(0)
+
+        # self.calendar_middle_date = CalendarWindow()
+        # self.calendar_middle_date.create_calendar(1)
+        # self.calendar_end_date = CalendarWindow()
+        # self.calendar_end_date.create_calendar(2)
+        self.add_buttons()
         self.show()
 
-    def add_button(self):
-        self.button = QPushButton("Wczytaj", self)
-        self.button.move(50,200)
-        self.button.clicked.connect(self.leagues_collection.run_scraper)
+    def add_buttons(self):
+        left = 50
+        self.button_run = QPushButton("Wczytaj", self)
+        self.button_run.move(left, 200)
+        self.button_run.clicked.connect(self.leagues_collection.run_scraper)
+
+        self.button_set_start_date = QPushButton("Data 1", self)
+        self.button_set_start_date.move(left, 35)
+        self.button_set_start_date.clicked.connect(partial(self.open_calendar, 0))
+
+        self.button_set_middle_date = QPushButton("Data 2", self)
+        self.button_set_middle_date.move(left, 95)
+        self.button_set_middle_date.clicked.connect(partial(self.open_calendar, 1))
+
+        self.button_end_start_date = QPushButton("Data 3", self)
+        self.button_end_start_date.move(left, 155)
+        self.button_end_start_date.clicked.connect(partial(self.open_calendar, 2))
+
+    def open_calendar(self, number):
+        calendar_start_date = CalendarWindow()
+        calendar_start_date.create_calendar(number)
 
     def add_date_labels(self):
         left = 70

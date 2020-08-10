@@ -1,16 +1,16 @@
-from PyQt5 import QtCore
+from PyQt5.QtCore import pyqtSignal, pyqtSlot
+from PyQt5.QtCore import QObject
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QCalendarWidget
 from functools import partial
 from datetime import datetime
 
 class CalendarWindow(QWidget):
-    signal = QtCore.pyqtSignal(str, int)
+    signal = pyqtSignal(str, int)
 
     def __init__(self):
         super(CalendarWindow, self).__init__()
         self.setWindowTitle("Pyside2 Calendar")
         self.setGeometry(300, 200, 250, 200)
-        self.name = "lorrtytdyt"
 
     def create_calendar(self, var):
         self.vbox = QVBoxLayout()
@@ -33,7 +33,7 @@ class CalendarWindow(QWidget):
 
 
 
-    @QtCore.pyqtSlot(str, int)
+    @pyqtSlot(str, int)
     def print_it(self, text, number):
         assert isinstance(text, str)
         assert isinstance(number, int)
