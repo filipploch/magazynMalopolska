@@ -33,9 +33,10 @@ class TimelineHTMLbuilder:
         match_date = one_match.match_date.strftime('%Y-%m-%d')
         match_time = one_match.match_time
         match_spot = one_match.match_spot
+        match_queue = one_match.queue
         self.body_html += '<tr class="break"><td colspan="4"><p>1</p></td></tr>\
-        <tr class="event_time"><td colspan="2" class="left_cell">'+match_date+'</td>\
-        <td colspan="2" class="right_cell">'+match_time+'</td></tr>\
+        <tr class="event_time"><td class="left_cell">'+match_queue+'</td>\
+        <td colspan="2" class="center_cell">'+match_time+'</td><td class="right_cell">'+match_date+'</td></tr>\
         <tr class="result"><td class="team_name left_cell">' + team_a_name +'</td>\
 <td class="score">' + team_a_score + '</td>\
 <td class="score">' + team_b_score + '</td>\

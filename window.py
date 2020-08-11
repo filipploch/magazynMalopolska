@@ -4,6 +4,7 @@ from PyQt5 import QtCore
 from  calendarWindow import CalendarWindow
 import leaguesCollector
 from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QWidget, QPushButton, QLabel
 import datetime
 
@@ -21,6 +22,7 @@ class Window(QMainWindow):
 
     def window_builder(self):
         self.setWindowTitle(self.title)
+        self.setWindowIcon(QIcon('img\\icon.png'))
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.add_date_labels()
 
@@ -60,9 +62,12 @@ class Window(QMainWindow):
         left = 70
         width = 60
         height = 21
-        self.label_start_date = QLabel("2020-08-02", self)
-        self.label_middle_date = QLabel("2020-08-09", self)
-        self.label_end_date = QLabel("2020-08-16", self)
+        start_date = datetime.datetime.strftime(self.leagues_collection.d0, '%Y-%m-%d')
+        middle_date = datetime.datetime.strftime(self.leagues_collection.d1, '%Y-%m-%d')
+        end_date = datetime.datetime.strftime(self.leagues_collection.d2, '%Y-%m-%d')
+        self.label_start_date = QLabel(start_date, self)
+        self.label_middle_date = QLabel(middle_date, self)
+        self.label_end_date = QLabel(end_date, self)
         self.label_start_date.setGeometry(left, 10, width, height)
         self.label_middle_date.setGeometry(left, 70, width, height)
         self.label_end_date.setGeometry(left, 130, width, height)

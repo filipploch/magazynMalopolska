@@ -9,6 +9,7 @@ class Match:
     team_b_name = ""
     team_b_score = ""
     match_spot = ""
+    queue = ""
     x = 0
 
     def __init__(self, tr):
@@ -34,6 +35,18 @@ class Match:
 
         match_spot = soup.find('span', {'class': 'spot'})
         self.set_match_spot(match_spot)
+
+        queue = soup.find('div', {'class': 'event'})
+        self.set_queue(queue)
+
+    def set_queue(self, queue):
+        # queue = queue.replace('\n', '').replace('\r', '')
+        # queue = queue.replace(' ', '')
+        x = queue.text
+        y = x.split('\n')
+        y = y[1].replace('            ', '')
+        # x = x.replace('\n', '').replace('\r', '')
+        self.queue = y
 
     def set_match_spot(self, match_spot):
         self.match_spot = match_spot.text
